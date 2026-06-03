@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
+	--animate-skeleton: skeleton 2s -1s infinite linear;
+	--animate-caret-blink: 1s ease-out infinite caret-blink;
+	--animate-toast-success-odd: toast-success-odd 0.32s
+		cubic-bezier(0.5, 1, 0.89, 1);
+	--animate-toast-success-even: toast-success-even 0.32s
+		cubic-bezier(0.5, 1, 0.89, 1);
+	--animate-toast-error-odd: toast-error-odd 0.28s cubic-bezier(0.5, 1, 0.89, 1);
+	--animate-toast-error-even: toast-error-even 0.28s
+		cubic-bezier(0.5, 1, 0.89, 1);
+	--font-heading: var(--font-heading);
+	--color-sidebar-ring: var(--sidebar-ring);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar: var(--sidebar);
+	--color-code-highlight: var(--code-highlight);
+	--code-foreground: var(--code-foreground);
+	--color-code: var(--code);
+	--color-chart-5: var(--chart-5);
+	--color-chart-4: var(--chart-4);
+	--color-chart-3: var(--chart-3);
+	--color-chart-2: var(--chart-2);
+	--color-chart-1: var(--chart-1);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-ring: var(--ring);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-input: var(--input);
+	--color-destructive: var(--destructive);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-border: var(--border);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-warning: var(--warning);
+	--color-success-foreground: var(--success-foreground);
+	--color-success: var(--success);
+	--color-info-foreground: var(--info-foreground);
+	--color-info: var(--info);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
+	@keyframes skeleton {
+		to {
+			background-position: -200% 0;
+		}
+	}
+	@keyframes caret-blink {
+		0%,
+		70%,
+		to {
+			opacity: 1;
+		}
+		20%,
+		50% {
+			opacity: 0;
+		}
+	}
+	@keyframes toast-success-odd {
+		0% {
+			scale: 1;
+		}
+		30% {
+			scale: 1.025;
+		}
+		60% {
+			scale: 0.99;
+		}
+		100% {
+			scale: 1;
+		}
+	}
+	@keyframes toast-error-odd {
+		0% {
+			translate: 0 0;
+		}
+		25% {
+			translate: -3px 0;
+		}
+		50% {
+			translate: 3px 0;
+		}
+		75% {
+			translate: -3px 0;
+		}
+		100% {
+			translate: 0 0;
+		}
+	}
+	@keyframes toast-success-even {
+		0% {
+			scale: 1;
+		}
+		30% {
+			scale: 1.025;
+		}
+		60% {
+			scale: 0.99;
+		}
+		100% {
+			scale: 1;
+		}
+	}
+	@keyframes toast-error-even {
+		0% {
+			translate: 0 0;
+		}
+		25% {
+			translate: -3px 0;
+		}
+		50% {
+			translate: 3px 0;
+		}
+		75% {
+			translate: -3px 0;
+		}
+		100% {
+			translate: 0 0;
+		}
+	}
+}
+
+:root {
+	--destructive-foreground: var(--color-pink-100);
+	--info: var(--color-cyan-400);
+	--info-foreground: var(--color-cyan-950);
+	--success: var(--color-lime-400);
+	--success-foreground: var(--color-lime-950);
+	--warning: var(--color-yellow-400);
+	--warning-foreground: var(--color-yellow-950);
+	--accent: --alpha(var(--color-indigo-500) / 15%);
+	--accent-foreground: var(--color-indigo-900);
+	--background: var(--color-indigo-50);
+	--border: --alpha(var(--color-indigo-900) / 10%);
+	--card: --alpha(var(--color-white) / 70%);
+	--card-foreground: var(--color-indigo-950);
+	--destructive: var(--color-pink-500);
+	--foreground: var(--color-indigo-950);
+	--input: --alpha(var(--color-indigo-900) / 15%);
+	--muted: --alpha(var(--color-indigo-900) / 5%);
+	--muted-foreground: var(--color-indigo-600);
+	--popover: --alpha(var(--color-white) / 80%);
+	--popover-foreground: var(--color-indigo-950);
+	--primary: var(--color-violet-600);
+	--primary-foreground: var(--color-white);
+	--ring: var(--color-violet-400);
+	--secondary: var(--color-fuchsia-100);
+	--secondary-foreground: var(--color-fuchsia-900);
+	--chart-1: var(--color-violet-500);
+	--chart-2: var(--color-cyan-400);
+	--chart-3: var(--color-pink-500);
+	--chart-4: var(--color-lime-400);
+	--chart-5: var(--color-amber-500);
+	--code: var(--color-white);
+	--code-foreground: var(--foreground);
+	--code-highlight: --alpha(var(--color-indigo-500) / 10%);
+	--radius: 1rem;
+	--sidebar: --alpha(var(--color-white) / 50%);
+	--sidebar-accent: --alpha(var(--color-indigo-500) / 15%);
+	--sidebar-accent-foreground: var(--color-indigo-950);
+	--sidebar-border: --alpha(var(--color-indigo-900) / 10%);
+	--sidebar-foreground: var(--color-indigo-900);
+	--sidebar-primary: var(--color-violet-600);
+	--sidebar-primary-foreground: var(--color-white);
+	--sidebar-ring: var(--color-violet-400);
+}
+
+.dark {
+	--destructive-foreground: var(--color-pink-100);
+	--info: var(--color-cyan-400);
+	--info-foreground: var(--color-cyan-950);
+	--success: var(--color-lime-400);
+	--success-foreground: var(--color-lime-950);
+	--warning: var(--color-yellow-400);
+	--warning-foreground: var(--color-yellow-950);
+	--accent: --alpha(var(--color-fuchsia-400) / 20%);
+	--accent-foreground: var(--color-fuchsia-100);
+	--background: var(--color-slate-950);
+	--border: --alpha(var(--color-white) / 10%);
+	--card: --alpha(var(--color-slate-900) / 40%);
+	--card-foreground: var(--color-slate-100);
+	--destructive: var(--color-pink-500);
+	--foreground: var(--color-slate-100);
+	--input: --alpha(var(--color-white) / 15%);
+	--muted: --alpha(var(--color-white) / 5%);
+	--muted-foreground: var(--color-slate-400);
+	--popover: --alpha(var(--color-slate-900) / 60%);
+	--popover-foreground: var(--color-slate-100);
+	--primary: var(--color-cyan-400);
+	--primary-foreground: var(--color-cyan-950);
+	--ring: var(--color-cyan-400);
+	--secondary: --alpha(var(--color-fuchsia-500) / 20%);
+	--secondary-foreground: var(--color-fuchsia-100);
+	--chart-1: var(--color-cyan-400);
+	--chart-2: var(--color-fuchsia-500);
+	--chart-3: var(--color-lime-400);
+	--chart-4: var(--color-yellow-400);
+	--chart-5: var(--color-pink-500);
+	--code: --alpha(var(--color-slate-900) / 50%);
+	--code-foreground: var(--foreground);
+	--code-highlight: --alpha(var(--color-white) / 10%);
+	--sidebar: --alpha(var(--color-slate-950) / 40%);
+	--sidebar-accent: --alpha(var(--color-fuchsia-400) / 20%);
+	--sidebar-accent-foreground: var(--color-fuchsia-100);
+	--sidebar-border: --alpha(var(--color-white) / 10%);
+	--sidebar-foreground: var(--color-slate-300);
+	--sidebar-primary: var(--color-cyan-400);
+	--sidebar-primary-foreground: var(--color-cyan-950);
+	--sidebar-ring: var(--color-cyan-400);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply text-foreground min-h-screen bg-fixed bg-cover bg-no-repeat;
+		background-image: radial-gradient(at top left, var(--color-fuchsia-200), transparent 50%),
+		                  radial-gradient(at bottom right, var(--color-cyan-200), transparent 50%),
+		                  radial-gradient(at bottom left, var(--color-indigo-300), transparent 50%),
+		                  radial-gradient(at top right, var(--color-indigo-100), transparent 50%);
+		background-color: var(--background);
+	}
+	.dark body {
+		background-image: radial-gradient(at top left, var(--color-fuchsia-900), transparent 50%),
+		                  radial-gradient(at bottom right, var(--color-cyan-900), transparent 50%),
+		                  radial-gradient(at bottom left, var(--color-indigo-950), transparent 50%),
+		                  radial-gradient(at top right, var(--color-slate-950), transparent 50%);
+		background-color: var(--background);
+	}
+	code,
+	kbd,
+	samp,
+	pre {
+		font-family: var(--font-mono);
+	}
+	html {
+		@apply font-sans font-mono;
+	}
+}
