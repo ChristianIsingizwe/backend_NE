@@ -20,7 +20,7 @@ TS="$(date +%Y%m%d-%H%M%S)"
 DIR="$(cd "$(dirname "$0")/.." && pwd)/backups"
 mkdir -p "$DIR"
 
-for db in restful_auth restful_management restful_notification; do
+for db in auth management notification; do
   out="$DIR/${db}-${TS}.sql"
   echo "Backing up ${db} -> ${out}"
   pg_dump -h "$HOST" -p "$PORT" -U "$USER" -d "$db" --clean --if-exists >"$out"

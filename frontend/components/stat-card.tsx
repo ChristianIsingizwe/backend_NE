@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils";
 type Tone = "default" | "success" | "warning" | "destructive" | "info";
 
 const TONE_CLASSES: Record<Tone, string> = {
-	default: "bg-muted text-foreground shadow-sm",
-	success: "bg-success/15 text-success shadow-success/20 shadow-md",
-	warning: "bg-warning/15 text-warning shadow-warning/20 shadow-md",
-	destructive: "bg-destructive/15 text-destructive shadow-destructive/20 shadow-md",
-	info: "bg-info/15 text-info shadow-info/20 shadow-md",
+	default: "border-border bg-muted text-foreground",
+	success: "border-emerald-200 bg-emerald-50 text-emerald-700",
+	warning: "border-amber-200 bg-amber-50 text-amber-800",
+	destructive: "border-rose-200 bg-rose-50 text-rose-700",
+	info: "border-sky-200 bg-sky-50 text-sky-700",
 };
 
 export function StatCard({
@@ -31,13 +31,15 @@ export function StatCard({
 }): React.ReactElement {
 	return (
 		<Card className="p-5">
-			<div className="flex items-start justify-between gap-3">
-				<div className="min-w-0 space-y-1.5">
-					<p className="truncate text-muted-foreground text-sm font-medium">{label}</p>
+			<div className="flex items-start justify-between gap-4">
+				<div className="min-w-0 space-y-2">
+					<p className="truncate text-muted-foreground text-xs font-semibold uppercase tracking-[0.14em]">
+						{label}
+					</p>
 					{loading ? (
 						<Skeleton className="h-8 w-20" />
 					) : (
-						<p className="font-heading font-bold text-3xl tabular-nums leading-none">
+						<p className="font-heading font-semibold text-3xl tabular-nums leading-none">
 							{value}
 						</p>
 					)}
@@ -46,7 +48,7 @@ export function StatCard({
 				{icon && (
 					<span
 						className={cn(
-							"flex size-10 shrink-0 items-center justify-center rounded-2xl [&_svg]:size-5",
+							"flex size-11 shrink-0 items-center justify-center rounded-xl border [&_svg]:size-5",
 							TONE_CLASSES[tone],
 						)}
 					>

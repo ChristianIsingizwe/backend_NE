@@ -18,7 +18,7 @@ export type ChartColor =
 	| "blue"
 	| "emerald"
 	| "amber"
-	| "violet"
+	| "orange"
 	| "rose";
 
 const colorValues: Record<ChartColor, string> = {
@@ -30,7 +30,7 @@ const colorValues: Record<ChartColor, string> = {
 	blue: "var(--color-blue-500)",
 	emerald: "var(--color-emerald-500)",
 	amber: "var(--color-amber-500)",
-	violet: "var(--color-violet-500)",
+	orange: "var(--color-orange-500)",
 	rose: "var(--color-rose-500)",
 };
 
@@ -44,7 +44,7 @@ export const AvailableChartColors: ChartColor[] = [
 	"blue",
 	"emerald",
 	"amber",
-	"violet",
+	"orange",
 	"rose",
 ];
 

@@ -5,7 +5,12 @@ import { useEffect } from "react";
 
 import { AppSidebar } from "@/components/app-sidebar";
 import { useAuth } from "@/components/providers/auth-provider";
-import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import {
+	canRoleAccessPath,
+	fallbackPortalRoute,
+	rolePortalLabel,
+} from "@/lib/role-portal";
 import {
 	SidebarInset,
 	SidebarProvider,
@@ -37,9 +42,10 @@ export default function AppLayout({
 }: {
 	children: React.ReactNode;
 }): React.ReactElement {
-	const { isAuthenticated, isLoading } = useAuth();
+	const { isAuthenticated, isLoading, user } = useAuth();
 	const router = useRouter();
 	const pathname = usePathname();
+	const canAccessPath = user ? canRoleAccessPath(user.role, pathname) : false;
 
 	useEffect(() => {
 		if (!isLoading && !isAuthenticated) {
@@ -48,9 +54,15 @@ export default function AppLayout({
 		}
 	}, [isLoading, isAuthenticated, pathname, router]);
 
-	if (isLoading || !isAuthenticated) {
+	useEffect(() => {
+		if (!isLoading && user && !canAccessPath) {
+			router.replace(fallbackPortalRoute());
+		}
+	}, [canAccessPath, isLoading, router, user]);
+
+	if (isLoading || !isAuthenticated || !user || !canAccessPath) {
 		return (
-			<div className="flex min-h-svh items-center justify-center">
+			<div className="flex min-h-svh items-center justify-center bg-background">
 				<Spinner className="size-5 text-muted-foreground" />
 			</div>
 		);
@@ -60,14 +72,23 @@ export default function AppLayout({
 		<SidebarProvider>
 			<AppSidebar />
 			<SidebarInset>
-				<header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 border-b bg-background/80 px-4 backdrop-blur-sm">
-					<SidebarTrigger className="md:hidden" />
-					<Separator orientation="vertical" className="h-5 md:hidden" />
-					<span className="font-heading font-semibold text-sm">
-						{sectionTitle(pathname)}
-					</span>
+				<header className="sticky top-0 z-10 border-b border-border bg-background/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/90 sm:px-6">
+					<div className="flex items-center gap-3">
+						<SidebarTrigger className="md:hidden" />
+						<div className="min-w-0">
+							<p className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.18em]">
+								{rolePortalLabel(user.role)}
+							</p>
+							<h2 className="truncate font-heading font-semibold text-xl tracking-tight">
+								{sectionTitle(pathname)}
+							</h2>
+						</div>
+						<Badge variant="outline" className="ms-auto hidden sm:inline-flex">
+							Fire Safety Platform
+						</Badge>
+					</div>
 				</header>
-				<div className="flex flex-1 flex-col gap-4 p-4 sm:gap-6 sm:p-6">
+				<div className="flex flex-1 flex-col gap-5 p-4 sm:gap-6 sm:p-6">
 					<VerifyEmailBanner />
 					{children}
 				</div>

@@ -79,26 +79,28 @@ export default function RegisterPage(): React.ReactElement {
 
 	return (
 		<div>
-			<div>
-				<h1 className="font-semibold text-[30px] leading-9 tracking-normal text-slate-950">
-					Sign up
+			<div className="space-y-3">
+				<p className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.18em]">
+					Register
+				</p>
+				<h1 className="font-heading font-semibold text-3xl tracking-tight">
+					Create your workspace
 				</h1>
-				<p className="mt-3 text-base text-slate-600">
-					Start your 30-day free trial.
+				<p className="text-muted-foreground text-sm sm:text-base">
+					Set up your team and start tracking extinguisher operations.
 				</p>
 			</div>
 
-			<form className="mt-9 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
-				<FormField label="Name" htmlFor="name" error={errors.name} required>
+			<form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
+				<FormField label="Full name" htmlFor="name" error={errors.name} required>
 					<Input
 						id="name"
 						autoComplete="name"
-						placeholder="Enter your name"
+						placeholder="Jane Doe"
 						size="lg"
 						value={values.name}
 						onChange={(e) => update("name", e.target.value)}
 						aria-invalid={Boolean(errors.name)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
@@ -107,12 +109,11 @@ export default function RegisterPage(): React.ReactElement {
 						id="email"
 						type="email"
 						autoComplete="email"
-						placeholder="Enter your email"
+						placeholder="name@company.com"
 						size="lg"
 						value={values.email}
 						onChange={(e) => update("email", e.target.value)}
 						aria-invalid={Boolean(errors.email)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
@@ -132,27 +133,18 @@ export default function RegisterPage(): React.ReactElement {
 						value={values.password}
 						onChange={(e) => update("password", e.target.value)}
 						aria-invalid={Boolean(errors.password)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
-				<Button
-					type="submit"
-					size="xl"
-					className="mt-1 h-11 w-full border-violet-600 bg-violet-600 text-white shadow-none hover:bg-violet-700"
-					loading={register.isPending}
-				>
-					Get started
+				<Button type="submit" size="xl" className="mt-1 w-full" loading={register.isPending}>
+					Create account
 				</Button>
 			</form>
 
-			<div className="mt-24 text-center text-slate-600 text-sm">
+			<div className="mt-8 text-center text-muted-foreground text-sm">
 				Already have an account?{" "}
-				<Link
-					href="/auth/login"
-					className="font-semibold text-violet-600 hover:text-violet-700"
-				>
-					Log in
+				<Link href="/auth/login" className="font-semibold text-primary">
+					Sign in
 				</Link>
 			</div>
 		</div>

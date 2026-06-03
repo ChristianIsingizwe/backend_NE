@@ -9,13 +9,13 @@
 -- CREATE DATABASE cannot run inside a transaction/DO block, so we use psql's
 -- \gexec to conditionally execute the statement only when the DB is missing.
 
-SELECT 'CREATE DATABASE restful_auth'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'restful_auth')\gexec
+SELECT 'CREATE DATABASE auth'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'auth')\gexec
 
-SELECT 'CREATE DATABASE restful_management'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'restful_management')\gexec
+SELECT 'CREATE DATABASE management'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'management')\gexec
 
-SELECT 'CREATE DATABASE restful_notification'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'restful_notification')\gexec
+SELECT 'CREATE DATABASE notification'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'notification')\gexec
 
-\echo 'Databases ready: restful_auth, restful_management, restful_notification'
+\echo 'Databases ready: auth, management, notification'

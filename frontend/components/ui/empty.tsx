@@ -12,7 +12,7 @@ const emptyMediaVariants = cva(
 		variants: {
 			variant: {
 				default: "bg-transparent",
-				icon: "relative flex size-9 shrink-0 items-center justify-center rounded-md border bg-card not-dark:bg-clip-padding text-foreground shadow-sm/5 before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-md)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] dark:before:shadow-[0_-1px_--theme(--color-white/6%)] [&_svg:not([class*='size-'])]:size-4.5",
+				icon: "relative flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-background text-primary [&_svg:not([class*='size-'])]:size-4.5",
 			},
 		},
 	},
@@ -25,7 +25,7 @@ export function Empty({
 	return (
 		<div
 			className={cn(
-				"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-balance px-6 py-12 text-center md:py-20",
+				"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 px-6 py-12 text-center md:py-20",
 				className,
 			)}
 			data-slot="empty"
@@ -63,24 +63,6 @@ export function EmptyMedia({
 			data-variant={variant}
 			{...props}
 		>
-			{variant === "icon" && (
-				<>
-					<div
-						aria-hidden="true"
-						className={cn(
-							emptyMediaVariants({ className, variant }),
-							"pointer-events-none absolute bottom-px origin-bottom-left -translate-x-0.5 -rotate-10 scale-84 shadow-none",
-						)}
-					/>
-					<div
-						aria-hidden="true"
-						className={cn(
-							emptyMediaVariants({ className, variant }),
-							"pointer-events-none absolute bottom-px origin-bottom-right translate-x-0.5 rotate-10 scale-84 shadow-none",
-						)}
-					/>
-				</>
-			)}
 			<div
 				className={cn(emptyMediaVariants({ className, variant }))}
 				{...props}
@@ -95,7 +77,7 @@ export function EmptyTitle({
 }: React.ComponentProps<"div">): React.ReactElement {
 	return (
 		<div
-			className={cn("font-heading font-semibold text-xl", className)}
+			className={cn("font-heading font-semibold text-xl tracking-tight", className)}
 			data-slot="empty-title"
 			{...props}
 		/>

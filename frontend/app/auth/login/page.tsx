@@ -59,27 +59,29 @@ export default function LoginPage(): React.ReactElement {
 
 	return (
 		<div>
-			<div>
-				<h1 className="font-semibold text-[30px] leading-9 tracking-normal text-slate-950">
+			<div className="space-y-3">
+				<p className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.18em]">
+					Sign in
+				</p>
+				<h1 className="font-heading font-semibold text-3xl tracking-tight">
 					Welcome back
 				</h1>
-				<p className="mt-3 text-base text-slate-600">
-					Welcome back! Please enter your details.
+				<p className="text-muted-foreground text-sm sm:text-base">
+					Access inspections, maintenance logs, and compliance reporting.
 				</p>
 			</div>
 
-			<form className="mt-9 flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
+			<form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
 				<FormField label="Email" htmlFor="email" error={errors.email}>
 					<Input
 						id="email"
 						type="email"
 						autoComplete="email"
-						placeholder="Enter your email"
+						placeholder="name@company.com"
 						size="lg"
 						value={values.email}
 						onChange={(e) => update("email", e.target.value)}
 						aria-invalid={Boolean(errors.email)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
@@ -88,53 +90,37 @@ export default function LoginPage(): React.ReactElement {
 						id="password"
 						type="password"
 						autoComplete="current-password"
-						placeholder="Password"
+						placeholder="Enter your password"
 						size="lg"
 						value={values.password}
 						onChange={(e) => update("password", e.target.value)}
 						aria-invalid={Boolean(errors.password)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
 				<div className="-mt-1 flex items-center justify-between gap-4 text-sm">
-					<Label
-						htmlFor="remember"
-						className="cursor-pointer font-medium text-slate-700"
-					>
+					<Label htmlFor="remember" className="cursor-pointer text-foreground">
 						<Checkbox
 							id="remember"
 							checked={remember}
 							onCheckedChange={(checked) => setRemember(checked === true)}
-							className="border-slate-300"
 						/>
 						Remember for 30 days
 					</Label>
-					<Link
-						href="/auth/forgot-password"
-						className="font-semibold text-violet-600 hover:text-violet-700"
-					>
+					<Link href="/auth/forgot-password" className="font-semibold text-primary">
 						Forgot password
 					</Link>
 				</div>
 
-				<Button
-					type="submit"
-					size="xl"
-					className="h-11 w-full border-violet-600 bg-violet-600 text-white shadow-none hover:bg-violet-700"
-					loading={login.isPending}
-				>
+				<Button type="submit" size="xl" className="w-full" loading={login.isPending}>
 					Sign in
 				</Button>
 			</form>
 
-			<div className="mt-8 text-center text-slate-600 text-sm">
+			<div className="mt-8 text-center text-muted-foreground text-sm">
 				Don&apos;t have an account?{" "}
-				<Link
-					href="/auth/register"
-					className="font-semibold text-violet-600 hover:text-violet-700"
-				>
-					Sign up
+				<Link href="/auth/register" className="font-semibold text-primary">
+					Create one
 				</Link>
 			</div>
 		</div>

@@ -26,16 +26,17 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarSeparator,
 	SidebarTrigger,
 	useSidebar,
 } from "@/components/ui/sidebar";
+import { canRoleAccessRoute, type PortalRoute } from "@/lib/role-portal";
 import { UserMenu } from "@/components/user-menu";
 
 type NavItem = {
 	title: string;
-	href: string;
+	href: PortalRoute;
 	icon: IconSvgElement;
-	adminOnly?: boolean;
 };
 
 const PRIMARY_NAV: NavItem[] = [
@@ -52,7 +53,7 @@ const PRIMARY_NAV: NavItem[] = [
 ];
 
 const ADMIN_NAV: NavItem[] = [
-	{ title: "Users", href: "/users", icon: UserMultipleIcon, adminOnly: true },
+	{ title: "Users", href: "/users", icon: UserMultipleIcon },
 ];
 
 function NavMenu({ items }: { items: NavItem[] }): React.ReactElement {
@@ -83,12 +84,19 @@ function NavMenu({ items }: { items: NavItem[] }): React.ReactElement {
 }
 
 export function AppSidebar(): React.ReactElement {
-	const { isAdmin } = useAuth();
+	const { isAdmin, user } = useAuth();
+	const role = user?.role;
+	const primaryNav = role
+		? PRIMARY_NAV.filter((item) => canRoleAccessRoute(role, item.href))
+		: [];
+	const adminNav = role
+		? ADMIN_NAV.filter((item) => canRoleAccessRoute(role, item.href))
+		: [];
 
 	return (
-		<Sidebar collapsible="icon">
+		<Sidebar collapsible="icon" variant="inset">
 			<SidebarHeader>
-				<div className="flex h-10 items-center gap-2 px-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
+				<div className="flex items-center gap-3 text-sidebar-foreground">
 					<Brand
 						showSubtitle={false}
 						className="group-data-[collapsible=icon]:hidden"
@@ -97,29 +105,28 @@ export function AppSidebar(): React.ReactElement {
 				</div>
 			</SidebarHeader>
 
+			<SidebarSeparator />
+
 			<SidebarContent>
 				<SidebarGroup>
+					<SidebarGroupLabel>Operations</SidebarGroupLabel>
 					<SidebarGroupContent>
-						<NavMenu items={PRIMARY_NAV} />
+						<NavMenu items={primaryNav} />
 					</SidebarGroupContent>
 				</SidebarGroup>
 
-				{isAdmin && (
+				{isAdmin && adminNav.length > 0 && (
 					<SidebarGroup>
 						<SidebarGroupLabel>Administration</SidebarGroupLabel>
 						<SidebarGroupContent>
-							<NavMenu items={ADMIN_NAV} />
+							<NavMenu items={adminNav} />
 						</SidebarGroupContent>
 					</SidebarGroup>
 				)}
 			</SidebarContent>
 
 			<SidebarFooter>
-				<SidebarMenu>
-					<SidebarMenuItem>
-						<UserMenu />
-					</SidebarMenuItem>
-				</SidebarMenu>
+				<UserMenu />
 			</SidebarFooter>
 		</Sidebar>
 	);

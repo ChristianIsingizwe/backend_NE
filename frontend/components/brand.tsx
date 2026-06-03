@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type React from "react";
 
 import { cn } from "@/lib/utils";
@@ -13,25 +12,17 @@ export function Brand({
 	showSubtitle?: boolean;
 }): React.ReactElement {
 	return (
-		<span className={cn("flex items-center gap-2.5", className)}>
-			<span className="relative flex size-9 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-600 shadow-lg shadow-violet-500/40 ring-1 ring-white/20">
-				<Image
-					src="/logo.svg"
-					alt={iconOnly ? "TZW Fire Safety" : ""}
-					width={22}
-					height={22}
-					unoptimized
-					priority
-					className="size-5 shrink-0 brightness-0 invert"
-				/>
+		<span className={cn("flex items-center gap-3 text-current", className)}>
+			<span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary font-heading font-bold text-[11px] tracking-[0.22em] text-primary-foreground">
+				TZW
 			</span>
 			{!iconOnly && (
 				<span className="flex flex-col leading-none">
-					<span className="font-heading font-bold text-sm bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent dark:from-cyan-400 dark:to-fuchsia-400">
+					<span className="font-heading font-semibold text-current text-sm tracking-[0.08em] uppercase">
 						TZW Fire Safety
 					</span>
 					{showSubtitle && (
-						<span className="text-muted-foreground text-xs">
+						<span className="text-[11px] text-current/65 uppercase tracking-[0.16em]">
 							Extinguisher Management
 						</span>
 					)}

@@ -54,27 +54,29 @@ export default function ResetPasswordPage(): React.ReactElement {
 
 	return (
 		<div>
-			<div>
-				<h1 className="font-semibold text-[30px] leading-9 tracking-normal text-slate-950">
+			<div className="space-y-3">
+				<p className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.18em]">
+					Password reset
+				</p>
+				<h1 className="font-heading font-semibold text-3xl tracking-tight">
 					Reset password
 				</h1>
-				<p className="mt-3 text-base text-slate-600">
-					Enter the code we emailed you and choose a new password.
+				<p className="text-muted-foreground text-sm sm:text-base">
+					Enter the emailed code and choose a new password.
 				</p>
 			</div>
 
-			<form className="mt-9 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
+			<form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
 				<FormField label="Email" htmlFor="email" error={errors.email}>
 					<Input
 						id="email"
 						type="email"
 						autoComplete="email"
-						placeholder="Enter your email"
+						placeholder="name@company.com"
 						size="lg"
 						value={values.email}
 						onChange={(e) => update("email", e.target.value)}
 						aria-invalid={Boolean(errors.email)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
@@ -82,7 +84,7 @@ export default function ResetPasswordPage(): React.ReactElement {
 					label="Reset code"
 					htmlFor="code"
 					error={errors.code}
-					hint="The 6-digit code from your email."
+					hint="Enter the 6-digit code from your email."
 				>
 					<Input
 						id="code"
@@ -96,7 +98,6 @@ export default function ResetPasswordPage(): React.ReactElement {
 							update("code", e.target.value.replace(/\D/g, "").slice(0, 6))
 						}
 						aria-invalid={Boolean(errors.code)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
@@ -115,25 +116,16 @@ export default function ResetPasswordPage(): React.ReactElement {
 						value={values.newPassword}
 						onChange={(e) => update("newPassword", e.target.value)}
 						aria-invalid={Boolean(errors.newPassword)}
-						className="rounded-lg border-slate-300 bg-white text-slate-950 shadow-sm"
 					/>
 				</FormField>
 
-				<Button
-					type="submit"
-					size="xl"
-					className="mt-1 h-11 w-full border-violet-600 bg-violet-600 text-white shadow-none hover:bg-violet-700"
-					loading={reset.isPending}
-				>
+				<Button type="submit" size="xl" className="mt-1 w-full" loading={reset.isPending}>
 					Reset password
 				</Button>
 			</form>
 
 			<div className="mt-8 text-center">
-				<Link
-					href="/auth/login"
-					className="font-semibold text-sm text-violet-600 hover:text-violet-700"
-				>
+				<Link href="/auth/login" className="font-semibold text-primary text-sm">
 					Back to sign in
 				</Link>
 			</div>

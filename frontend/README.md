@@ -44,17 +44,14 @@ Open http://localhost:3000 — you’ll be routed to sign-in, then the dashboard
 
 ### Test accounts
 
-Run `pnpm db:seed` from the repo root to load test accounts (and sample data).
-All share the password `Password123`:
+Run `pnpm db:seed` from the repo root to load the default admin account.
+The seeded admin password is `Password123`:
 
 | Email                | Role        |
 | -------------------- | ----------- |
 | `admin@tzw.test`     | `admin`     |
-| `inspector@tzw.test` | `inspector` |
-| `user@tzw.test`      | `user`      |
 
-Sign in as each to see how the UI adapts to roles (create/edit/delete and the
-Users page appear only for the roles allowed to use them).
+No sample extinguisher, inspection, maintenance, or extra user data is seeded.
 
 > In development the OTP / password-reset codes are **logged by the notification
 > service** (no email is sent), so you can complete email verification and

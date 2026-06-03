@@ -8,7 +8,7 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 export const badgeVariants = cva(
-	"relative inline-flex shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-sm border border-transparent font-medium outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-3.5 sm:[&_svg:not([class*='size-'])]:size-3 [&_svg]:pointer-events-none [&_svg]:shrink-0 [button&,a&]:cursor-pointer [button&,a&]:pointer-coarse:after:absolute [button&,a&]:pointer-coarse:after:size-full [button&,a&]:pointer-coarse:after:min-h-11 [button&,a&]:pointer-coarse:after:min-w-11",
+	"inline-flex shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border px-2.5 font-medium text-xs outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-3.5 [&_svg]:pointer-events-none [&_svg]:shrink-0 [button&,a&]:cursor-pointer [button&,a&]:pointer-coarse:after:absolute [button&,a&]:pointer-coarse:after:size-full [button&,a&]:pointer-coarse:after:min-h-11 [button&,a&]:pointer-coarse:after:min-w-11",
 	{
 		defaultVariants: {
 			size: "default",
@@ -16,25 +16,26 @@ export const badgeVariants = cva(
 		},
 		variants: {
 			size: {
-				default:
-					"h-5.5 min-w-5.5 px-[calc(--spacing(1)-1px)] text-sm sm:h-4.5 sm:min-w-4.5 sm:text-xs",
-				lg: "h-6.5 min-w-6.5 px-[calc(--spacing(1.5)-1px)] text-base sm:h-5.5 sm:min-w-5.5 sm:text-sm",
-				sm: "h-5 min-w-5 rounded-[.25rem] px-[calc(--spacing(1)-1px)] text-xs sm:h-4 sm:min-w-4 sm:text-[.625rem]",
+				default: "h-6 min-w-6",
+				lg: "h-7 min-w-7 px-3 text-sm",
+				sm: "h-5 min-w-5 px-2 text-[11px]",
 			},
 			variant: {
 				default:
-					"bg-primary text-primary-foreground [button&,a&]:hover:bg-primary/90",
+					"border-primary bg-primary text-primary-foreground [button&,a&]:hover:bg-primary/90",
 				destructive:
-					"bg-destructive text-white [button&,a&]:hover:bg-destructive/90",
+					"border-destructive bg-destructive text-white [button&,a&]:hover:bg-destructive/90",
 				error:
-					"bg-destructive/8 text-destructive-foreground dark:bg-destructive/16",
-				info: "bg-info/8 text-info-foreground dark:bg-info/16",
+					"border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/40 dark:text-rose-200",
+				info: "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900/50 dark:bg-sky-950/40 dark:text-sky-200",
 				outline:
-					"border-input bg-background text-foreground dark:bg-input/32 [button&,a&]:hover:bg-accent/50 dark:[button&,a&]:hover:bg-input/48",
+					"border-border bg-background text-foreground [button&,a&]:hover:bg-muted",
 				secondary:
-					"bg-secondary text-secondary-foreground [button&,a&]:hover:bg-secondary/90",
-				success: "bg-success/8 text-success-foreground dark:bg-success/16",
-				warning: "bg-warning/8 text-warning-foreground dark:bg-warning/16",
+					"border-secondary bg-secondary text-secondary-foreground [button&,a&]:hover:bg-secondary/80",
+				success:
+					"border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-200",
+				warning:
+					"border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-200",
 			},
 		},
 	},
