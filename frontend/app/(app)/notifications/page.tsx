@@ -7,14 +7,12 @@ import {
 	ClipboardClockIcon,
 	TriangleAlertIcon,
 } from "lucide-react";
-import Link from "next/link";
 import { useMemo } from "react";
 
 import { DataState } from "@/components/data-state";
 import { PageHeader } from "@/components/page-header";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardPanel, CardTitle } from "@/components/ui/card";
 import { useExtinguishers } from "@/lib/api/extinguishers";
 import { useComplianceReport, useInspectionReport } from "@/lib/api/reports";
@@ -172,28 +170,6 @@ export default function NotificationsPage(): React.ReactElement {
 							/>
 						))}
 					</AlertGroup>
-
-					<Card className="flex flex-col justify-center">
-						<CardPanel className="flex flex-col items-start gap-3">
-							<CardTitle className="text-base">Stay ahead</CardTitle>
-							<p className="text-muted-foreground text-sm">
-								Schedule inspections and log maintenance to keep these alerts
-								clear.
-							</p>
-							<div className="flex flex-wrap gap-2">
-								<Button size="sm" render={<Link href="/inspections" />}>
-									Schedule inspection
-								</Button>
-								<Button
-									size="sm"
-									variant="outline"
-									render={<Link href="/extinguishers" />}
-								>
-									View extinguishers
-								</Button>
-							</div>
-						</CardPanel>
-					</Card>
 				</div>
 			</DataState>
 		</div>

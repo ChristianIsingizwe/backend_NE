@@ -104,7 +104,8 @@ export function Calendar({
 			}
 
 			return (
-				<ChevronsUpDownIcon
+				<HugeiconsIcon
+					icon={UnfoldMoreIcon}
 					className={className}
 					{...props}
 					aria-hidden="true"

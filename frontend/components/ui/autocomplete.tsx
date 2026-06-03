@@ -8,6 +8,7 @@ import type React from "react";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { XIcon } from "lucide-react";
 
 export const Autocomplete: typeof AutocompletePrimitive.Root =
 	AutocompletePrimitive.Root;

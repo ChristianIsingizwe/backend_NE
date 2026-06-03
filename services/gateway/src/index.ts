@@ -16,13 +16,8 @@ const app = express();
 
 // Behind a load balancer in production (needed for correct client IPs).
 app.set("trust proxy", 1);
-
-// NOTE: no body parser here on purpose — the proxy must forward the raw request
-// stream. Parsing the body would consume it and break proxied POST/PATCH calls.
 app.use(createRequestLogger(logger));
 app.use(createGlobalRateLimiter(config.rateLimit));
-// The gateway owns CORS for the whole system; downstream CORS headers are
-// stripped from proxied responses below to avoid duplicates.
 app.use(cors({ origin: config.corsOrigin, credentials: true }));
 
 // ── Gateway-owned routes ────────────────────────────────────────────────────
@@ -51,7 +46,7 @@ app.get("/", (_req, res) => {
 
 app.use(createGatewayDocsRouter());
 
-// ── Proxy plumbing ──────────────────────────────────────────────────────────
+
 
 /** Respond with a clean 502 when a downstream service is unreachable. */
 const onError = (err: Error, _req: unknown, res: unknown): void => {

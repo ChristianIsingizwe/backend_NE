@@ -84,7 +84,7 @@ export default function AppLayout({
 							</h2>
 						</div>
 						<Badge variant="outline" className="ms-auto hidden sm:inline-flex">
-							Fire Safety Platform
+							Fire Extinguisher Management System
 						</Badge>
 					</div>
 				</header>
